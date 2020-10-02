@@ -1,0 +1,80 @@
+.container {
+    margin: 20px;
+    display: grid;
+    grid-template-rows: 5rem fit-content(1rem);
+    grid-template-columns: 200px 2fr 20% 1fr;
+    /*grid-template-columns: 200px 2fr 20% auto; //auto takes rest of the available space*/
+
+    /* grid-template-rows: 5rem auto; this auto will occupy rest of thr height of container for row 2, if hight is specified for 
+    .container, else it will take content height */
+    
+    /*grid-template-columns: repeat(4, 25%); --creates 4 columns of 25% each width*/
+
+    /*grid-template-rows: 5rem minmax(10px, 200px) --for row 2, minimum height is 10px and maximum will be 200px, it will auto adjust
+    based on height of container remaining height. same minmax() can be applied for width for grid-template-columns*/
+    
+    /* NAMED ROWS 
+    grid-template-rows: [row-1-start] 5rem [row-1-end row-2-start] 2.5rem;*/
+
+    /*fit-content(value):
+        grid-template-rows: 5rem fit-content(2rem);  --> for row 2, even if the content exceeds 2rem, it will adjust and will fit the content
+                                                        it may be required to use word-wrap property however to fit the content nicely ;
+    */
+    column-gap: 20px;
+    row-gap: 10px;
+    /* shorthad ->> gap: 20px 10px; */
+/* 
+    BEST PRACTICE - Better use grid-template-areas and grid-area inside divs so it is easier and less code to write responsive code 
+    as we can reuse all these gri-area tags; */
+    /*we can also use grid-template-areas:"header"
+                                          "main"
+                                          "footer"
+    and use these names in respective css class like grid-area: main etc*/
+
+    /*positioning of grid elements - won't be use practially 99% of time
+    justify-items: start,end,center, stretch(default)   <----positions horizontally
+    align-items: start,end,center, stretch(default)   <----positions vertically
+    */
+    /*justify-content and align-content are also avaialble to position the whole grid, not the content inside it.
+    check grid-17-applying-autoflow project for its usage */
+}
+
+@media (max-width: 40rem) {
+    /* for mobile devices 
+    we can define a separate grid-template-rows: with 1 or 2 more rows in mobile devices
+    so the content creates new rows when srinked to mobile
+    or reduce some columns using grid-template-columns: ;
+
+    BEST PRACTICE - use grid-template-areas and grid-area in respective grid - so that we dont have to 
+    write more css for responsiveness*/
+}
+
+.el1 {
+    background: rgba(255, 154, 72, 0.5);
+    /* POSITIONING INDIVIDUAL GRID:
+    justify-self: center;
+    align-self: center; */
+}
+
+.el2 {
+    background: rgba(255, 0, 0, 0.5);
+
+}
+
+.el3 {
+    background: rgba(0, 128, 0, 0.5);
+    grid-column-start: 3;
+    grid-column-end: 5;
+    /*shorthad for above 2 line is --> "grid-column:3 / 5"*/
+    /*grid-column-end: span 2; - takes 2 grids from start*/
+    /* if position explicitly set for same row and column, they can overlap and color wil be merge,
+    based on order in dom, merge color will be produced  -- advanced elem positioning - LEC 221*/
+    grid-row-start: 1;  /*OR    grid-row-start: row-1-start;  <--using named row* */
+    grid-row-end: 3;
+    /* shorthad for above 4 rows --> grid-area: row-1-start / col-1-start / row-2-end / span 3(this is a col-2-end value) */
+}
+
+.el4 {
+    background: rgba(0, 4, 255, 0.5);
+    word-wrap: break-word;
+}

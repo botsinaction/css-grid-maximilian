@@ -1,0 +1,31 @@
+/*all elements inside a grid are part of grid automatically and will be fitted into new rows automatically*/
+.container {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 15rem);
+    /* AUTO-FILL - automatically add columns based on available space on right side;
+    AUTO-FIT - same behavior as auto-fill, but also aligns it on center. use this if you have less items.
+    grid-template-columns: repeat(auto-fill, 15rem); 
+    grid-template-columns: repeat(auto-fit, 15rem); */
+    justify-content: center; /* positions the whole grid in center */
+    grid-gap: 1.5rem;
+    grid-auto-rows: minmax(8rem, auto); /*sets height of all rows*/
+    grid-auto-flow: row; /*default is row, but we can use column also<--rarely used --grid automatically adds new rows based on html elements
+                          inside parent element - in this case quote inside container*/
+    grid-auto-flow: row dense; /*dense property fillup all available space and puts items in empty spaces - lec 236*/
+    grid-auto-columns: 5rem;
+}
+
+.quote {
+  border: 1px solid #fa923f;
+  background: #ffbd87;
+  font-family: sans-serif;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.quote--featured {
+  border: #ff4213;
+  background: #ff9f87;
+  grid-column: span 2;
+}
